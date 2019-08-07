@@ -1,0 +1,90 @@
+plugins {
+	id 'java'
+}
+
+group 'waiter'
+version '1'
+
+apply plugin: 'groovy'
+apply plugin: 'java'
+apply plugin: "war"
+war {
+	baseName = 'waiter'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+ext {
+	springVersion = "5.0.0.RELEASE"
+	springSecurityVersion = "4.2.3.RELEASE"
+	slf4jVersion = "1.7.25"
+	libraries = [
+			c3p0                  : 'com.mchange:c3p0:0.9.5-pre10',
+			commons_collections   : 'commons-collections:commons-collections:2.1.1',
+			commons_lang_3        : 'org.apache.commons:commons-lang3:3.6',
+			lombok              : 'org.projectlombok:lombok:1.16.18',
+			mockito             : 'org.mockito:mockito-core:2.10.0',
+			mysql_connector     : 'mysql:mysql-connector-java:5.0.4',
+			mysql_connector_5_1 : 'mysql:mysql-connector-java:5.1.35',
+			slf4j               : "org.slf4j:slf4j-api:$slf4jVersion",
+			spring_core         : [dependencies.create("org.springframework:spring-context:$springVersion") {
+				exclude group: 'commons-logging', module: 'commons-logging'
+									},
+			                       dependencies.create("org.springframework:spring-core:$springVersion") {
+				                       exclude group: 'commons-logging', module: 'commons-logging'
+			                       },
+			                       "org.slf4j:jcl-over-slf4j:$slf4jVersion"],
+			spring_mvc          : [dependencies.create("org.springframework:spring-context:$springVersion") {
+				exclude group: 'commons-logging', module: 'commons-logging'
+									},
+			                       dependencies.create("org.springframework:spring-webmvc:$springVersion") {
+				                       exclude group: 'commons-logging', module: 'commons-logging'
+			                       }],
+			spring_security     : [dependencies.create("org.springframework.security:spring-security-web:$springSecurityVersion") {
+				exclude group: 'commons-logging', module: 'commons-logging'
+									},
+			                       dependencies.create("org.springframework.security:spring-security-config:$springSecurityVersion") {
+				                       exclude group: 'commons-logging', module: 'commons-logging'
+			                       }],
+			spring_security_test: dependencies.create("org.springframework.security:spring-security-test:$springSecurityVersion") {
+				exclude group: 'commons-logging', module: 'commons-logging'
+									},
+			spring_web          : dependencies.create("org.springframework:spring-web:$springVersion") {
+				exclude group: 'commons-logging', module: 'commons-logging'
+									},
+			spring_webmvc       : dependencies.create("org.springframework:spring-webmvc:$springVersion") {
+				exclude group: 'commons-logging', module: 'commons-logging'
+									},
+	]
+
+}
+
+dependencies {
+	compile("org.springframework:spring-context:5.0.0.RELEASE")
+	compile("org.springframework:spring-webmvc:5.0.0.RELEASE")
+	compile("org.aspectj:aspectjrt:1.7.4")
+	compile("javax.inject:javax.inject:1")
+	compile("javax.servlet:servlet-api:2.5")
+	//    compile("javax.servlet:jstl:2.5")
+	//    compile("javax.servlet.jsp:jsp-api:1.2")
+	compile("org.slf4j:slf4j-api:1.7.5")
+	compile("org.slf4j:jcl-over-slf4j:1.7.5")
+	compile("org.slf4j:slf4j-log4j12:1.7.5")
+	compile("log4j:log4j:1.2.15")
+	compile("org.projectlombok:lombok:1.16.18")
+	compile("org.codehaus.groovy:groovy-all:2.3.11")
+
+}
+
+allprojects {
+	apply plugin: 'idea'
+	repositories {
+		mavenCentral()
+		maven { url 'http://jasperreports.sourceforge.net/maven2' }
+	}
+}
