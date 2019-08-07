@@ -9,5 +9,5 @@ public class Table implements Serializable {
 
 	private Long tableId;
 	private Long tableNumber;
-	private Order order;
+	private String order;
 }

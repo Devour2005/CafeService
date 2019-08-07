@@ -1,4 +1,4 @@
 package com.waiterapp.service;
 
-public class WaiterService {
+public class EmployeeService {
 }

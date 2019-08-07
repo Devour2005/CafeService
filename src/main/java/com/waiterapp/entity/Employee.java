@@ -7,10 +7,12 @@ import java.util.List;
 import lombok.Data;
 
 @Data
-public class Waiter implements Serializable {
+public class Employee implements Serializable {
 
-	private Long waiterId;
-	private List<Long> servingTables = new ArrayList<>();
+	private Long employeeId;
+	private String firstName;
+	private String lastName;
+	private List<Table> servingTables = new ArrayList<>();
 	private List<Order> orders = new ArrayList<>();
 
 }

@@ -1,6 +1,7 @@
 package com.waiterapp.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import lombok.Data;
 
@@ -9,7 +10,8 @@ public class Order implements Serializable {
 
 	private Long orderId;
 	private Long tableNumber;
-	private boolean isAccepted;
-	private boolean isGiven;
-	private boolean isClosed;
+	private Date timeOfOrder;
+	private boolean isOrderAccepted;
+	private boolean isOrderGivenOut;
+	private boolean isOrderClosed;
 }

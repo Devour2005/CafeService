@@ -1,4 +1,4 @@
 package com.waiterapp.repository.waiterdao;
 
-public class WaiterDao {
+public class EmployeeDao {
 }
